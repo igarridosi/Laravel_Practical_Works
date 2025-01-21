@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cars', function (Blueprint $table) {
-            $table->renameColumn('licensePlate', 'license_plate'); // Renaming a column
-            $table->foreignId('parking_lot_id')->constrained('parkings')->onDelete('cascade');
+        Schema::create('authors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name'); // Author name
+            $table->integer('age'); // Author age
+            $table->string('genre'); // Author's genre or specialization
+            $table->timestamps();
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('authors');
     }
 };
